@@ -30,10 +30,7 @@ namespace MadPay724.EndPoint.WebAPI
             {
                 options.AddPolicy("AllowAngular", policy =>
                 {
-                    policy
-                        .AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
+                    policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
         }
