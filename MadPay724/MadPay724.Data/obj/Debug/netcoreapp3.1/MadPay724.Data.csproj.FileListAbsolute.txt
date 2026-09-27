@@ -1,0 +1,10 @@
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\bin\Debug\netcoreapp3.1\MadPay724.Data.deps.json
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\bin\Debug\netcoreapp3.1\MadPay724.Data.dll
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\bin\Debug\netcoreapp3.1\MadPay724.Data.pdb
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\obj\Debug\netcoreapp3.1\MadPay724.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\obj\Debug\netcoreapp3.1\MadPay724.Data.AssemblyInfoInputs.cache
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\obj\Debug\netcoreapp3.1\MadPay724.Data.AssemblyInfo.cs
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\obj\Debug\netcoreapp3.1\MadPay724.Data.csproj.CoreCompileInputs.cache
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\obj\Debug\netcoreapp3.1\MadPay724.Data.sourcelink.json
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\obj\Debug\netcoreapp3.1\MadPay724.Data.dll
+D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\obj\Debug\netcoreapp3.1\MadPay724.Data.pdb

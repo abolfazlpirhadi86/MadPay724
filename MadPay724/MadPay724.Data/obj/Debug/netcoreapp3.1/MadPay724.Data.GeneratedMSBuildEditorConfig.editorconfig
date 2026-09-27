@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = MadPay724.Data
+build_property.ProjectDir = D:\Projects\MadPay724\MadPay724Server\MadPay724\MadPay724\MadPay724.Data\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 

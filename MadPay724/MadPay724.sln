@@ -1,9 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36717.8 d17.14
+VisualStudioVersion = 17.14.36717.8
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadPay724.Common", "MadPay724.Common\MadPay724.Common.csproj", "{81F10577-1783-4232-8B32-DC34B65D88A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadPay724.Data", "MadPay724.Data\MadPay724.Data.csproj", "{FC9E52C1-1E53-4FB4-A03E-FEEAD236AD9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadPay724.EndPoint.WebAPI", "MadPay724.EndPoint.WebAPI\MadPay724.EndPoint.WebAPI.csproj", "{C463C5AE-6518-4397-A94A-C08CD6500B0C}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81F10577-1783-4232-8B32-DC34B65D88A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F10577-1783-4232-8B32-DC34B65D88A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F10577-1783-4232-8B32-DC34B65D88A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F10577-1783-4232-8B32-DC34B65D88A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC9E52C1-1E53-4FB4-A03E-FEEAD236AD9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC9E52C1-1E53-4FB4-A03E-FEEAD236AD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC9E52C1-1E53-4FB4-A03E-FEEAD236AD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC9E52C1-1E53-4FB4-A03E-FEEAD236AD9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C463C5AE-6518-4397-A94A-C08CD6500B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C463C5AE-6518-4397-A94A-C08CD6500B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C463C5AE-6518-4397-A94A-C08CD6500B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C463C5AE-6518-4397-A94A-C08CD6500B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
