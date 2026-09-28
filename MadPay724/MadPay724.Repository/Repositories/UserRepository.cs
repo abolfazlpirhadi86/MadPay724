@@ -1,8 +1,10 @@
-﻿using MadPay724.Data.DataBaseContext;
+﻿using MadPay724.Common.Helpers;
+using MadPay724.Data.DataBaseContext;
 using MadPay724.Data.Models;
 using MadPay724.Repository.Infrastructure;
 using MadPay724.Repository.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace MadPay724.Repository.Repositories
 {
@@ -13,5 +15,7 @@ namespace MadPay724.Repository.Repositories
         {
             _dbContext = _dbContext ?? (ApplicationDBContext)_dbContext;
         }
+
+        
     }
 }

@@ -27,6 +27,6 @@ namespace MadPay724.Data.Models
         public bool Status { get; set; }
 
         //public List<Photo> Photos { get; set; }
-        public List<Photo> MyProperty { get; set; }
+        //public List<Photo> Photos { get; set; }
     }
 }

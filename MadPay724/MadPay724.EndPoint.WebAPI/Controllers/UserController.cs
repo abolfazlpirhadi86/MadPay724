@@ -1,5 +1,7 @@
 ﻿using MadPay724.Data.DataBaseContext;
+using MadPay724.Data.Models;
 using MadPay724.Repository.Infrastructure;
+using MadPay724.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,14 +10,14 @@ namespace MadPay724.EndPoint.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly IUnitOfWork<ApplicationDBContext> _dbContext;
-        public WeatherForecastController(IUnitOfWork<ApplicationDBContext> dbContext)
+
+        private readonly IUserService _userService;
+        public UserController(IUserService userService)
         {
-            _dbContext = dbContext;
+            _userService = userService;
         }
-       
 
         [HttpGet]
         public async Task<ActionResult<List<string>>> Get()
@@ -33,10 +35,12 @@ namespace MadPay724.EndPoint.WebAPI.Controllers
             //    PasswordSalt = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, },
             //};
 
-            //await _dbContext.UserRepository.Add(user);
-            //await _dbContext.SaveAsync();
+            ////await _dbContext.UserRepository.Add(user);
+            ////await _dbContext.SaveAsync();
 
-            var model=await _dbContext.UserRepository.GetAll();
+            //await _userService.Register(user,"123");
+
+            var model = await _userService.GetAll();
             return Ok(model);
         }
     }

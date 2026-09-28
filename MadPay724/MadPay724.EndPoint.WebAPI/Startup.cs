@@ -1,5 +1,7 @@
 using MadPay724.Data.DataBaseContext;
 using MadPay724.Repository.Infrastructure;
+using MadPay724.Service.Interfaces;
+using MadPay724.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +32,7 @@ namespace MadPay724.EndPoint.WebAPI
             });
 
             services.AddScoped<IUnitOfWork<ApplicationDBContext>, UnitOfWork<ApplicationDBContext>>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

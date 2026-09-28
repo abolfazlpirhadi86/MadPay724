@@ -12,6 +12,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\MadPay724.Data\MadPay724.Data.csproj" />
 	  <ProjectReference Include="..\MadPay724.Repository\MadPay724.Repository.csproj" />
+	  <ProjectReference Include="..\MadPay724.Service\MadPay724.Service.csproj" />
 	</ItemGroup>
 
 
