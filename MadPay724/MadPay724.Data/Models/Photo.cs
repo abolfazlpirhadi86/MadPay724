@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MadPay724.Data.Models
 {
-    internal class Photo : BaseEntity<int>
+    public class Photo : BaseEntity<int>
     {
         public Photo()
         {
@@ -12,7 +12,6 @@ namespace MadPay724.Data.Models
             CreatedDate = DateTime.Now;
         }
 
-        public string  UserId { get; set; }
         public string Url { get; set; }
         public string Description { get; set; }
         public string Alt { get; set; }

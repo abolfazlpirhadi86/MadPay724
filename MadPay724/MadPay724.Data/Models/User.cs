@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MadPay724.Data.Models
 {
-    internal class User : BaseEntity<string>
+    public class User : BaseEntity<string>
     {
         public User()
         {
@@ -26,7 +26,7 @@ namespace MadPay724.Data.Models
         public bool IsActive { get; set; }
         public bool Status { get; set; }
 
-        public List<Photo> Photos { get; set; }
+        //public List<Photo> Photos { get; set; }
         public List<Photo> MyProperty { get; set; }
     }
 }

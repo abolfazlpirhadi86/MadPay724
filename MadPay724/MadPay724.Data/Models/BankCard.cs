@@ -27,5 +27,7 @@ namespace MadPay724.Data.Models
         [Required]
         [StringLength(2, MinimumLength = 2)]
         public string ExpireDateDay { get; set; }
+
+        public User User { get; set; }
     }
 }
