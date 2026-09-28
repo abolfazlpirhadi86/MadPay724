@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace MadPay724.Data.Infrastructure
+namespace MadPay724.Repository.Infrastructure
 {
     public interface IRepository<TEntity> where TEntity : class 
     {
-        void Add(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
-        void Delete(object id);
-        void Delete(Expression<Func<TEntity, bool>> where);
+        Task Add(TEntity entity);
+        Task Update(TEntity entity);
+        Task Delete(TEntity entity);
+        Task Delete(object id);
+        Task Delete(Expression<Func<TEntity, bool>> where);
 
         TEntity Get(object id);
         TEntity Get(Expression<Func<TEntity, bool>> where);
-        IEnumerable<TEntity> GetAll();
+        Task<IEnumerable<TEntity>> GetAll();
         IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> where);
     }
 }

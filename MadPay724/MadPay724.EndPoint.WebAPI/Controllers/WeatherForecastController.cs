@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using MadPay724.Data.DataBaseContext;
+using MadPay724.Repository.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MadPay724.EndPoint.WebAPI.Controllers
@@ -11,29 +10,34 @@ namespace MadPay724.EndPoint.WebAPI.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        private readonly IUnitOfWork<ApplicationDBContext> _dbContext;
+        public WeatherForecastController(IUnitOfWork<ApplicationDBContext> dbContext)
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
+            _dbContext = dbContext;
         }
+       
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<ActionResult<List<string>>> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            //var user = new User
+            //{
+            //    Address = "Tehran",
+            //    City = "Tehran",
+            //    DateOfBirth = "1365/09/29",
+            //    FullName = "AbolfazlPirhadi",
+            //    IsActive = true,
+            //    UserName = "Abed",
+            //    Status = true,
+            //    PasswordHash = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, },
+            //    PasswordSalt = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, },
+            //};
+
+            //await _dbContext.UserRepository.Add(user);
+            //await _dbContext.SaveAsync();
+
+            var model=await _dbContext.UserRepository.GetAll();
+            return Ok(model);
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using MadPay724.Data.Infrastructure;
+﻿using MadPay724.Repository.Repositories;
+using MadPay724.Repository.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
-namespace MadPay724.Data.Repositories
+namespace MadPay724.Repository.Infrastructure
 {
     public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : DbContext, new()
     {
@@ -12,6 +13,17 @@ namespace MadPay724.Data.Repositories
         public UnitOfWork()
         {
             _dbContext = new TContext();
+        }
+
+        private IUserRepository userRepository;
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                userRepository ??= new UserRepository(_dbContext);
+
+                return userRepository;
+            }
         }
 
         public void Save()
@@ -28,16 +40,19 @@ namespace MadPay724.Data.Repositories
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) 
+        #region Method
+        protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
                 if (disposing)
                     _dbContext.Dispose();
             disposed = true;
         }
-        ~UnitOfWork() 
+        ~UnitOfWork()
         {
             Dispose(false);
         }
+        #endregion
+
     }
 }
