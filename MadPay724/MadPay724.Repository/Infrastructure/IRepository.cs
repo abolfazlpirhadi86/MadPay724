@@ -13,10 +13,10 @@ namespace MadPay724.Repository.Infrastructure
         Task Delete(TEntity entity);
         Task Delete(object id);
         Task Delete(Expression<Func<TEntity, bool>> where);
-
-        TEntity Get(object id);
-        TEntity Get(Expression<Func<TEntity, bool>> where);
-        Task<IEnumerable<TEntity>> GetAll();
-        IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> where);
+        Task<bool> Any(Expression<Func<TEntity, bool>> condition);
+        Task<TEntity> Get(object id);
+        Task<TEntity> Get(Expression<Func<TEntity, bool>> where);
+        Task<List<TEntity>> GetAll();
+        Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> where);
     }
 }

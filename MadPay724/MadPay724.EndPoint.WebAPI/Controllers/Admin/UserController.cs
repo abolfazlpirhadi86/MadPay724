@@ -1,4 +1,5 @@
 ﻿using MadPay724.Data.DataBaseContext;
+using MadPay724.Data.DTOs;
 using MadPay724.Data.Models;
 using MadPay724.Repository.Infrastructure;
 using MadPay724.Service.Interfaces;
@@ -6,13 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MadPay724.EndPoint.WebAPI.Controllers
+namespace MadPay724.EndPoint.WebAPI.Controllers.Admin
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("site/admin/[controller]")]
     public class UserController : ControllerBase
     {
-
         private readonly IUserService _userService;
         public UserController(IUserService userService)
         {
@@ -22,6 +22,15 @@ namespace MadPay724.EndPoint.WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<string>>> Get()
         {
+            var model = await _userService.GetAll();
+            return Ok(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Regsiter(RegisterUserDTO model) 
+        {
+            //var s = await _userService.Register(model,"123");
+
             //var user = new User
             //{
             //    Address = "Tehran",
@@ -39,9 +48,7 @@ namespace MadPay724.EndPoint.WebAPI.Controllers
             ////await _dbContext.SaveAsync();
 
             //await _userService.Register(user,"123");
-
-            var model = await _userService.GetAll();
-            return Ok(model);
+            return StatusCode(200);
         }
     }
 }

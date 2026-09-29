@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Extensions.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,43 +30,49 @@ namespace MadPay724.Repository.Infrastructure
 
         public async Task Delete(TEntity entity)
         {
-             _dbSet.Remove(entity);
+            _dbSet.Remove(entity);
         }
         public async Task Delete(object id)
         {
-            var entity = Get(id);
+            var entity = await Get(id);
             if (entity is null)
             {
                 throw new ArgumentException();
             }
 
-            _dbSet.Remove(entity);
+            await Delete(entity);
         }
         public async Task Delete(Expression<Func<TEntity, bool>> condition)
         {
             List<TEntity> entities = _dbSet.Where(condition).ToList();
-            foreach (TEntity entity in entities) 
+            foreach (TEntity entity in entities)
             {
                 _dbSet.Remove(entity);
             }
         }
 
-        public TEntity Get(object id)
+        public async Task<TEntity> Get(object id)
         {
-            return _dbSet.Find(id);
+            return await _dbSet.FindAsync(id);
         }
-        public TEntity Get(Expression<Func<TEntity, bool>> condition)
+        public async Task<TEntity> Get(Expression<Func<TEntity, bool>> condition)
         {
-            return _dbSet.Where(condition).FirstOrDefault();
+            return await _dbSet.Where(condition).FirstOrDefaultAsync();
         }
-        
-        public async Task<IEnumerable<TEntity>> GetAll()
+
+        public async Task<List<TEntity>> GetAll()
         {
-            return _dbSet.AsEnumerable();
+            return await _dbSet.ToListAsync();
         }
-        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> condition)
+        public async Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> condition)
         {
-            return _dbSet.Where(condition).AsEnumerable();
+            return await _dbSet.Where(condition).ToListAsync();
+        }
+
+        public async Task<bool> Any(Expression<Func<TEntity, bool>> condition)
+        {
+            var result = await _dbContext.Set<TEntity>().AnyAsync(condition);
+            return result;
         }
 
         public void Dispose()

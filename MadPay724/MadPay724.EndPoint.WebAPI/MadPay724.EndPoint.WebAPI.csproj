@@ -15,5 +15,9 @@
 	  <ProjectReference Include="..\MadPay724.Service\MadPay724.Service.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Controllers\Site\" />
+	</ItemGroup>
+
 
 </Project>

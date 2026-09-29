@@ -16,6 +16,21 @@ namespace MadPay724.Service.Services
             _dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<User>> GetAll() 
+        {
+            return await _dbContext.UserRepository.GetAll();
+        }
+        public async Task<User> Login(string username, string password)
+        {
+            var user = await _dbContext.UserRepository.Get(x => x.UserName == username);
+            if (user is null)
+                return null;
+
+            if (Utilities.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
+
+            return user;
+        }
         public async Task<User> Register(User user, string password)
         {
             var hashPass = Utilities.PasswordHash(password);
@@ -25,10 +40,6 @@ namespace MadPay724.Service.Services
             await _dbContext.UserRepository.Add(user);
             await _dbContext.SaveAsync();
             return user;
-        }
-        public async Task<IEnumerable<User>> GetAll() 
-        {
-            return await _dbContext.UserRepository.GetAll();
         }
     }
 }
