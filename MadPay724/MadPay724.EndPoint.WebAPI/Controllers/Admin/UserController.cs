@@ -1,17 +1,15 @@
-﻿using MadPay724.Data.DataBaseContext;
+﻿using MadPay724.Common.Messages;
 using MadPay724.Data.DTOs;
 using MadPay724.Data.Models;
-using MadPay724.Repository.Infrastructure;
 using MadPay724.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,7 +39,7 @@ namespace MadPay724.EndPoint.WebAPI.Controllers.Admin
         {
             var user = _userService.Login(model);
             if (user is null)
-                return Unauthorized(new Common.Messages.Message()
+                return Unauthorized(new Message()
                 {
                     Status = false,
                     Title = "خطا",
@@ -73,7 +71,7 @@ namespace MadPay724.EndPoint.WebAPI.Controllers.Admin
         [HttpPost("register")]
         public async Task<IActionResult> Register(User model)
         {
-            var s = await _userService.Register(model,"123");
+            var s = await _userService.Register(model, "123");
 
             //var user = new User
             //{
@@ -93,6 +91,30 @@ namespace MadPay724.EndPoint.WebAPI.Controllers.Admin
 
             //await _userService.Register(user,"123");
             return StatusCode(200);
+        }
+
+
+        [Authorize]
+        [HttpGet("getValue")]
+        public async Task<IActionResult> GetValue()
+        {
+            return Ok(new Message()
+            {
+                Status = true,
+                Title = "OK",
+                Description = ""
+            });
+        }
+
+        [HttpGet("getValues")]
+        public async Task<IActionResult> GetValues()
+        {
+            return Ok(new Message()
+            {
+                Status = true,
+                Title = "OK",
+                Description = ""
+            });
         }
     }
 }
