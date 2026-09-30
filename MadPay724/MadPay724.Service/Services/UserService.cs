@@ -1,8 +1,10 @@
 ﻿using MadPay724.Common.Helpers;
 using MadPay724.Data.DataBaseContext;
+using MadPay724.Data.DTOs;
 using MadPay724.Data.Models;
 using MadPay724.Repository.Infrastructure;
 using MadPay724.Service.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,13 +22,13 @@ namespace MadPay724.Service.Services
         {
             return await _dbContext.UserRepository.GetAll();
         }
-        public async Task<User> Login(string username, string password)
+        public async Task<User> Login(LoginUserDTO model)
         {
-            var user = await _dbContext.UserRepository.Get(x => x.UserName == username);
+            var user = await _dbContext.UserRepository.Get(x => x.UserName == model.UserName);
             if (user is null)
                 return null;
 
-            if (Utilities.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            if (Utilities.VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
                 return null;
 
             return user;

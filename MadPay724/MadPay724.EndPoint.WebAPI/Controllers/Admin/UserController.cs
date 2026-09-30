@@ -4,7 +4,15 @@ using MadPay724.Data.Models;
 using MadPay724.Repository.Infrastructure;
 using MadPay724.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MadPay724.EndPoint.WebAPI.Controllers.Admin
@@ -14,8 +22,10 @@ namespace MadPay724.EndPoint.WebAPI.Controllers.Admin
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly IConfiguration _configuration;
+        public UserController(IUserService userService, IConfiguration configuration)
         {
+            _configuration = configuration;
             _userService = userService;
         }
 
@@ -26,10 +36,44 @@ namespace MadPay724.EndPoint.WebAPI.Controllers.Admin
             return Ok(model);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Regsiter(RegisterUserDTO model) 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginUserDTO model)
         {
-            //var s = await _userService.Register(model,"123");
+            var user = _userService.Login(model);
+            if (user is null)
+                return Unauthorized(new Common.Messages.Message()
+                {
+                    Status = false,
+                    Title = "خطا",
+                    Description = "کاربری با این مشخصات یافت نشد"
+                });
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                new Claim(ClaimTypes.Name,user.Id.ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("appSettings:token").Value));
+            var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+            var tokenDescription = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = model.IsRemember ? DateTime.Now.AddDays(1) : DateTime.Now.AddHours(2),
+                SigningCredentials = credential
+            };
+
+            var tokenHendler = new JwtSecurityTokenHandler();
+            var token = tokenHendler.CreateToken(tokenDescription);
+
+            return Ok(new { token = tokenHendler.WriteToken(token) });
+        }
+
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(User model)
+        {
+            var s = await _userService.Register(model,"123");
 
             //var user = new User
             //{

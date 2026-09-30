@@ -1,7 +1,7 @@
 ﻿
 namespace MadPay724.Common.Messages
 {
-    internal class Message
+    public class Message
     {
         public bool Status { get; set; }
         public string Code{ get; set; }
